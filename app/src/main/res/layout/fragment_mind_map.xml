@@ -4,36 +4,82 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:clipChildren="false"
-    android:clipToPadding="false"
-    android:padding="8dp">
+    android:clipToPadding="false">
+
+    <com.superior.mindforgeai.MindMapCanvasView
+        android:id="@+id/mindMapCanvas"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
     <com.google.android.material.card.MaterialCardView
+        android:id="@+id/searchCard"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:clipChildren="false"
-        android:clipToPadding="false"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="12dp"
+        android:layout_marginTop="12dp"
+        android:visibility="gone"
         app:cardBackgroundColor="@color/surface_card"
-        app:cardCornerRadius="28dp"
-        app:cardElevation="2dp"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="4dp"
         app:strokeColor="@color/brand_purple_alpha15"
-        app:strokeWidth="2dp">
+        app:strokeWidth="1dp">
 
-        <HorizontalScrollView
-            android:id="@+id/hScrollView"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:clipChildren="false"
-            android:clipToPadding="false"
-            android:fillViewport="true"
-            android:scrollbars="none">
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="12dp"
+            android:paddingEnd="4dp"
+            android:paddingVertical="4dp">
 
-            <FrameLayout
-                android:id="@+id/treeContainer"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:clipChildren="false"
-                android:clipToPadding="false"
-                android:minWidth="800dp" />
-        </HorizontalScrollView>
+            <EditText
+                android:id="@+id/etSearch"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@null"
+                android:hint="Search nodes..."
+                android:imeOptions="actionSearch"
+                android:inputType="text"
+                android:paddingVertical="10dp"
+                android:textColor="@color/text_main"
+                android:textColorHint="@color/text_hint"
+                android:textSize="14sp" />
+
+            <ImageButton
+                android:id="@+id/btnClearSearch"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Clear search"
+                android:src="@drawable/ic_back_arrow"
+                android:visibility="gone"
+                app:tint="@color/text_sub" />
+        </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
+
+    <FrameLayout
+        android:id="@+id/minimapView"
+        android:layout_width="120dp"
+        android:layout_height="80dp"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        android:background="@drawable/bg_dynamic_island_perfect"
+        android:elevation="6dp"
+        android:visibility="visible" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|start"
+        android:layout_margin="16dp"
+        android:contentDescription="Search nodes"
+        app:backgroundTint="@color/surface_card"
+        app:elevation="6dp"
+        app:fabSize="mini"
+        app:srcCompat="@drawable/search_field"
+        app:tint="@color/brand_purple" />
+
 </FrameLayout>
