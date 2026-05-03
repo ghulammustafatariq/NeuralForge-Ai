@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/mainRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/main_bg_professional">
+
+    <!-- Premium Top Glow Fade -->
+    <View
+        android:id="@+id/topFadeView"
+        android:layout_width="match_parent"
+        android:layout_height="340dp"
+        android:background="@drawable/bg_top_faded_theme"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Premium Frosted Glass Dynamic Island -->
+    <FrameLayout
+        android:id="@+id/dynamic_island"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/bg_dynamic_island_perfect"
+        android:elevation="8dp"
+        android:alpha="0"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.94">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <FrameLayout
+                android:id="@+id/profileContainer"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:layout_marginStart="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/profileImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerInside"
+                    android:padding="4dp"
+                    android:src="@drawable/ic_launcher_foreground"
+                    app:shapeAppearanceOverlay="@style/CircleImageView"
+                    app:strokeColor="@color/brand_purple_alpha15"
+                    app:strokeWidth="2dp"
+                    android:background="@color/brand_purple_alpha15" />
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/tvUsernameIsland"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:text="Neural Architect"
+                android:textColor="@color/island_text"
+                android:textSize="15sp"
+                android:fontFamily="sans-serif-black"
+                android:letterSpacing="0.01"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/island_icons_group"
+                app:layout_constraintStart_toEndOf="@id/profileContainer"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:id="@+id/island_icons_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageButton
+                    android:id="@+id/btnTheme"
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:padding="9dp"
+                    android:src="@drawable/ic_theme_minimal"
+                    app:tint="@color/brand_purple" />
+
+                <ImageButton
+                    android:id="@+id/btnHistoryIsland"
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                    android:layout_marginStart="2dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:padding="9dp"
+                    android:src="@drawable/ic_history_minimal"
+                    app:tint="@color/brand_purple" />
+
+                <ImageButton
+                    android:id="@+id/btnSettings"
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                    android:layout_marginStart="2dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:padding="9dp"
+                    android:src="@drawable/ic_settings_minimal"
+                    app:tint="@color/brand_purple" />
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:paddingBottom="140dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/dynamic_island">
+
+        <LinearLayout
+            android:id="@+id/mainContentScroll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Title Section -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingHorizontal="32dp"
+                android:layout_marginTop="48dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Neural Forge"
+                    android:textColor="@color/text_main"
+                    android:textSize="36sp"
+                    android:fontFamily="sans-serif-black"
+                    android:letterSpacing="-0.03" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Crafting your learning journey"
+                    android:textColor="@color/text_sub"
+                    android:textSize="16sp"
+                    android:layout_marginTop="6dp"
+                    android:fontFamily="sans-serif-medium" />
+            </LinearLayout>
+
+            <!-- Main Purple Concave Card -->
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:background="@drawable/bg_concave_card">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingHorizontal="32dp"
+                    android:paddingTop="100dp"
+                    android:paddingBottom="100dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="NEURAL QUERY"
+                        android:textColor="#E6FFFFFF"
+                        android:textSize="12sp"
+                        android:fontFamily="sans-serif-black"
+                        android:letterSpacing="0.25" />
+
+                    <!-- Concept Input with Glass Edge -->
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="64dp"
+                        android:layout_marginTop="20dp"
+                        android:background="@drawable/glass_input_bg"
+                        android:paddingHorizontal="24dp">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etTopic"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_toStartOf="@id/ai_spark_icon"
+                            android:background="@android:color/transparent"
+                            android:hint="Concept to forge..."
+                            android:textColor="#FFFFFF"
+                            android:textColorHint="#CCFFFFFF"
+                            android:textSize="18sp"
+                            android:fontFamily="sans-serif-medium"
+                            android:inputType="text" />
+
+                        <ImageView
+                            android:id="@+id/ai_spark_icon"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/ic_ai_spark"
+                            app:tint="#FFFFFF" />
+                    </RelativeLayout>
+
+                    <!-- Contextual Details with Glass Edge -->
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etDescription"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:background="@drawable/glass_input_bg"
+                        android:gravity="top"
+                        android:hint="Contextual details (optional)"
+                        android:minHeight="140dp"
+                        android:padding="24dp"
+                        android:textColor="#FFFFFF"
+                        android:textColorHint="#CCFFFFFF"
+                        android:textSize="16sp"
+                        android:fontFamily="sans-serif"
+                        android:lineSpacingExtra="6dp" />
+                </LinearLayout>
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingHorizontal="28dp"
+                android:paddingTop="16dp">
+
+                <!-- Configurations Section -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="CONFIGURATIONS"
+                    android:textColor="@color/brand_purple"
+                    android:textSize="12sp"
+                    android:fontFamily="sans-serif-black"
+                    android:letterSpacing="0.2"
+                    android:layout_marginTop="40dp" />
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/chipGroupStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp"
+                    app:chipSpacingHorizontal="12dp"
+                    app:selectionRequired="true"
+                    app:singleSelection="true">
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipBeginner"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Entry Level"
+                        app:chipBackgroundColor="@color/chip_background_state"
+                        android:textColor="@color/chip_text_state"
+                        app:chipStrokeColor="@color/brand_purple_alpha15"
+                        app:chipStrokeWidth="1.2dp"
+                        app:chipCornerRadius="24dp"
+                        app:checkedIconVisible="false" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipProfessor"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Academic"
+                        app:chipBackgroundColor="@color/chip_background_state"
+                        android:textColor="@color/chip_text_state"
+                        app:chipStrokeColor="@color/brand_purple_alpha15"
+                        app:chipStrokeWidth="1.2dp"
+                        app:chipCornerRadius="24dp"
+                        app:checkedIconVisible="false" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipELI5"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Intuitive"
+                        app:chipBackgroundColor="@color/chip_background_state"
+                        android:textColor="@color/chip_text_state"
+                        app:chipStrokeColor="@color/brand_purple_alpha15"
+                        app:chipStrokeWidth="1.2dp"
+                        app:chipCornerRadius="24dp"
+                        app:checkedIconVisible="false" />
+                </com.google.android.material.chip.ChipGroup>
+
+                <!-- Focus Areas Section -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="FOCUS AREAS"
+                    android:textColor="@color/brand_purple"
+                    android:textSize="12sp"
+                    android:fontFamily="sans-serif-black"
+                    android:letterSpacing="0.2"
+                    android:layout_marginTop="44dp" />
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/chipGroupFocus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp"
+                    app:chipSpacingHorizontal="12dp">
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipTheory"
+                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Theory"
+                        app:chipBackgroundColor="@color/chip_background_state"
+                        android:textColor="@color/chip_text_state"
+                        app:chipStrokeColor="@color/brand_purple_alpha15"
+                        app:chipStrokeWidth="1.2dp"
+                        app:chipCornerRadius="24dp"
+                        app:checkedIconVisible="false" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipApplication"
+                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Application"
+                        app:chipBackgroundColor="@color/chip_background_state"
+                        android:textColor="@color/chip_text_state"
+                        app:chipStrokeColor="@color/brand_purple_alpha15"
+                        app:chipStrokeWidth="1.2dp"
+                        app:chipCornerRadius="24dp"
+                        app:checkedIconVisible="false" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipHistory"
+                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="History"
+                        app:chipIcon="@drawable/ic_history_minimal"
+                        app:chipIconTint="@color/chip_text_state"
+                        app:chipBackgroundColor="@color/chip_background_state"
+                        android:textColor="@color/chip_text_state"
+                        app:chipStrokeColor="@color/brand_purple_alpha15"
+                        app:chipStrokeWidth="1.2dp"
+                        app:chipCornerRadius="24dp"
+                        app:checkedIconVisible="false" />
+                </com.google.android.material.chip.ChipGroup>
+
+                <!-- Synthesis Depth Card -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="48dp"
+                    android:layout_marginBottom="32dp"
+                    app:cardBackgroundColor="@color/surface_card"
+                    app:cardCornerRadius="32dp"
+                    app:cardElevation="2dp"
+                    app:strokeColor="@color/divider"
+                    app:strokeWidth="1.5dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="30dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="SYNTHESIS DEPTH"
+                            android:textColor="@color/text_sub"
+                            android:textSize="12sp"
+                            android:fontFamily="sans-serif-black"
+                            android:letterSpacing="0.15" />
+
+                        <com.google.android.material.slider.Slider
+                            android:id="@+id/sliderDepth"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="24dp"
+                            android:valueFrom="1.0"
+                            android:valueTo="5.0"
+                            android:stepSize="1.0"
+                            android:value="3.0"
+                            app:thumbColor="@color/brand_purple"
+                            app:trackColorActive="@color/brand_purple"
+                            app:trackColorInactive="@color/divider"
+                            app:labelBehavior="gone" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Surface" android:textSize="13sp" android:textColor="@color/text_sub" android:fontFamily="sans-serif-medium" />
+                            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Balanced" android:textSize="13sp" android:textColor="@color/brand_purple" android:fontFamily="sans-serif-bold" android:gravity="center" />
+                            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Core" android:textSize="13sp" android:textColor="@color/text_sub" android:fontFamily="sans-serif-medium" android:gravity="end" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <!-- Prominent Action Button -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnGenerate"
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:layout_margin="28dp"
+        android:text="Forge Knowledge"
+        android:textColor="@color/text_on_brand"
+        android:textSize="19sp"
+        android:fontFamily="sans-serif-black"
+        android:letterSpacing="0.04"
+        android:alpha="0"
+        app:cornerRadius="36dp"
+        app:backgroundTint="@color/brand_purple"
+        app:elevation="10dp"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

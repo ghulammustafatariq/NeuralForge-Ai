@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/main_bg_professional"
+    android:clipChildren="false"
+    android:clipToPadding="false">
+
+    <!-- Animated Pattern Layer -->
+    <ImageView
+        android:id="@+id/patternBackground"
+        android:layout_width="1600dp"
+        android:layout_height="1600dp"
+        android:scaleType="matrix"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:alpha="0.3" />
+
+    <!-- Premium Top Glow Fade -->
+    <View
+        android:id="@+id/topFadeView"
+        android:layout_width="match_parent"
+        android:layout_height="340dp"
+        android:background="@drawable/bg_top_faded_theme"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/splashLogo"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/ic_ai_spark"
+            app:tint="@color/brand_purple"
+            android:elevation="10dp" />
+
+        <TextView
+            android:id="@+id/splashTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Neural Forge"
+            android:textColor="@color/text_main"
+            android:textSize="40sp"
+            android:fontFamily="sans-serif-black"
+            android:letterSpacing="-0.03" />
+
+        <TextView
+            android:id="@+id/splashSubtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CRAFTING KNOWLEDGE"
+            android:textColor="@color/brand_purple"
+            android:textSize="12sp"
+            android:fontFamily="sans-serif-black"
+            android:letterSpacing="0.25"
+            android:alpha="0.8" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

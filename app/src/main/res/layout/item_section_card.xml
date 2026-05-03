@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="14dp"
+    app:cardBackgroundColor="@color/surface_card"
+    app:cardCornerRadius="24dp"
+    app:cardElevation="1dp"
+    app:strokeColor="@color/divider"
+    app:strokeWidth="1.5dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="22dp">
+
+        <TextView
+            android:id="@+id/tvSectionHeading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="# Heading"
+            android:textColor="@color/brand_purple"
+            android:textSize="16sp"
+            android:fontFamily="sans-serif-black"
+            android:letterSpacing="0.01"
+            android:layout_marginBottom="10dp" />
+
+        <TextView
+            android:id="@+id/tvSectionContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Content text"
+            android:textColor="@color/text_main"
+            android:textSize="15sp"
+            android:fontFamily="sans-serif"
+            android:lineSpacingExtra="6dp" />
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

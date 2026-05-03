@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Theme-aware selection background (Alpha handled in colors.xml) -->
+    <item android:color="@color/chip_background_selected" android:state_checked="true" />
+    <!-- Theme-aware unselected background -->
+    <item android:color="@color/chip_background_unselected" />
+</selector>

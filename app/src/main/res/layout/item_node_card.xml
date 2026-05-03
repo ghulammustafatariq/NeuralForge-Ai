@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nodeCard"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:focusable="true"
+    app:cardCornerRadius="18dp"
+    app:cardElevation="3dp"
+    app:strokeWidth="2dp"
+    app:cardBackgroundColor="@color/surface_card"
+    app:strokeColor="@color/brand_purple_alpha15">
+
+    <TextView
+        android:id="@+id/tvNodeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="100dp"
+        android:gravity="center"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="10dp"
+        android:text="Node"
+        android:textColor="@color/brand_purple"
+        android:textSize="13sp"
+        android:fontFamily="sans-serif-bold"
+        android:maxLines="2"
+        android:ellipsize="end" />
+</com.google.android.material.card.MaterialCardView>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 1. Deep Base Foundation -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/app_background" />
+        </shape>
+    </item>
+
+    <!-- 2. Cyber-Violet Mesh Glows -->
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:type="radial"
+                android:gradientRadius="3500dp"
+                android:centerX="0.0"
+                android:centerY="0.1"
+                android:startColor="@color/brand_purple_alpha15"
+                android:endColor="@android:color/transparent" />
+        </shape>
+    </item>
+
+    <!-- 3. Neon Accent Glow (Subtle Cyan/Blue for tech feel) -->
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:type="radial"
+                android:gradientRadius="2500dp"
+                android:centerX="1.0"
+                android:centerY="1.0"
+                android:startColor="#1A00D1FF"
+                android:endColor="@android:color/transparent" />
+        </shape>
+    </item>
+
+    <!-- 4. Soft technical grain -->
+    <item
+        android:drawable="@drawable/bg_3d_grid"
+        android:alpha="0.02" />
+
+    <!-- 5. Top Aura -->
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:type="radial"
+                android:gradientRadius="1500dp"
+                android:centerX="0.5"
+                android:centerY="0.0"
+                android:startColor="@color/brand_purple_alpha30"
+                android:endColor="@android:color/transparent" />
+        </shape>
+    </item>
+</layer-list>

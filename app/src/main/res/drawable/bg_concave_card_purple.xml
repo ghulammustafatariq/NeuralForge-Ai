@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="400dp"
+    android:height="400dp"
+    android:viewportWidth="400"
+    android:viewportHeight="400">
+    <!-- Concave Shape for Search Bar only -->
+    <path
+        android:fillColor="#6800FF"
+        android:pathData="M0,0 Q200,40 400,0 L400,400 Q200,360 0,400 Z" />
+
+    <!-- Subtle high-gloss top edge -->
+    <path
+        android:strokeColor="#4DFFFFFF"
+        android:strokeWidth="1"
+        android:pathData="M0,1 Q200,41 400,1" />
+</vector>

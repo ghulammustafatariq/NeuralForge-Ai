@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Focused border color -->
+    <item android:color="@color/brand_purple" android:state_focused="true" />
+    <!-- Hovered border color -->
+    <item android:color="@color/brand_purple_light" android:state_hovered="true" />
+    <!-- Default (unfocused) border color - using a brighter grey/purple for visibility in dark mode -->
+    <item android:color="@color/colorOutline" />
+</selector>

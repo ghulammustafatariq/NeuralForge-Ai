@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="16dp"
+    app:cardBackgroundColor="@color/surface_card"
+    app:cardCornerRadius="24dp"
+    app:cardElevation="1dp"
+    app:strokeColor="@color/divider"
+    app:strokeWidth="1.2dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp">
+
+        <FrameLayout
+            android:id="@+id/stepNumberBadge"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:background="@drawable/step_badge_bg"
+            android:backgroundTint="@color/brand_purple_alpha15"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tvStepNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="sans-serif-black"
+                android:text="1"
+                android:textColor="@color/brand_purple"
+                android:textSize="14sp" />
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/tvStepInstruction"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:fontFamily="sans-serif-bold"
+            android:text="Step Instruction"
+            android:textColor="@color/text_main"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@id/stepNumberBadge"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/stepNumberBadge"
+            app:layout_constraintTop_toTopOf="@id/stepNumberBadge" />
+
+        <TextView
+            android:id="@+id/tvStepFormula"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@color/surface_input"
+            android:fontFamily="monospace"
+            android:padding="12dp"
+            android:text="x = (-b ± √(b² - 4ac)) / 2a"
+            android:textColor="@color/text_main"
+            android:textSize="15sp"
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@id/tvStepInstruction" />
+
+        <TextView
+            android:id="@+id/tvStepExplanation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="sans-serif"
+            android:lineSpacingExtra="4dp"
+            android:text="Detailed explanation of the step goes here."
+            android:textColor="@color/text_sub"
+            android:textSize="14sp"
+            app:layout_constraintTop_toBottomOf="@id/tvStepFormula" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

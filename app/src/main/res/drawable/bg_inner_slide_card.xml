@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="400dp"
+    android:height="200dp"
+    android:viewportWidth="400"
+    android:viewportHeight="200">
+    <!-- Concave top and bottom edges, sharp vertical side edges -->
+    <path
+        android:fillColor="#E6FFFFFF"
+        android:pathData="M0,0 Q200,35 400,0 L400,200 Q200,165 0,200 Z" />
+
+    <!-- Optional: Subtle inner shadow/border if needed can be added here -->
+</vector>

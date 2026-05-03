@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--
+      NEURAL FORGE PREMIUM "DEEP SPACE" COLOR SCHEME
+      A high-tech, futuristic aesthetic with deep blacks and glowing violets.
+    -->
+
+    <!-- Brand Identity (Night) - Cyber Violet -->
+    <color name="brand_purple">#8B5CF6</color> <!-- Electric Violet -->
+    <color name="brand_purple_light">#A78BFA</color>
+    <color name="brand_purple_alpha15">#268B5CF6</color>
+    <color name="brand_purple_alpha30">#4D8B5CF6</color>
+    <color name="brand_purple_alpha60">#998B5CF6</color>
+
+    <!-- Deep Space Semantic Palette -->
+    <color name="app_background">#0B0B0F</color> <!-- Deepest Midnight Navy -->
+    <color name="surface_card">#161624</color> <!-- Elevated Slate Navy -->
+    <color name="surface_input">#1F1F33</color> <!-- Glassy Slate Base -->
+
+    <!-- Typography -->
+    <color name="text_main">#FFFFFF</color> <!-- High-contrast White for Titles -->
+    <color name="text_sub">#CBD5E1</color> <!-- Soft Slate Grey for Body (High readability) -->
+    <color name="text_hint">#64748B</color> <!-- Muted Slate for placeholders -->
+    <color name="text_on_brand">#FFFFFF</color>
+
+    <!-- Borders & Outlines - SHARP & VISIBLE -->
+    <color name="divider">#2D2D45</color>
+    <color name="gray_light">#2D2D45</color>
+    <color name="colorOutline">#64748B</color> <!-- Slate Outline for visible boundaries -->
+    <color name="colorOutlineVariant">#334155</color>
+
+    <!-- Floating / Glass UI Effects -->
+    <color name="island_bg">#161624</color>
+    <color name="island_text">#FFFFFF</color>
+    <color name="glass_bg">#1AFFFFFF</color> <!-- 10% White frost -->
+    <color name="glass_stroke">#4DFFFFFF</color> <!-- 30% White for sharp rim light -->
+
+    <!-- Selection & Interaction -->
+    <color name="text_selection_highlight">#668B5CF6</color> <!-- Translucent Violet -->
+    <color name="cursor_color">#8B5CF6</color>
+
+    <!-- Legacy / Layout Compatibility (Ensures no invisible items) -->
+    <color name="white">#161624</color>
+    <color name="black">#FFFFFF</color>
+    <color name="cream">#0B0B0F</color>
+    <color name="electric_purple">#8B5CF6</color>
+
+    <!-- Constant Literals -->
+    <color name="pure_white">#FFFFFF</color>
+    <color name="pure_black">#000000</color>
+    <color name="status_red">#F87171</color>
+    <color name="status_green">#34D399</color>
+
+    <!-- Component States -->
+    <color name="chip_background_selected">#8B5CF6</color>
+    <color name="chip_background_unselected">#1F1F33</color>
+</resources>

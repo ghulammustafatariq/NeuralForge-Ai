@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Brand Identity -->
+    <color name="brand_purple">#6800FF</color>
+    <color name="brand_purple_light">#8C33FF</color>
+    <color name="brand_purple_alpha15">#266800FF</color>
+    <color name="brand_purple_alpha30">#4D6800FF</color>
+
+    <!-- UI Semantic Palette (Light Mode) -->
+    <color name="app_background">#FDFCFB</color>
+    <color name="surface_card">#FFFFFF</color>
+    <color name="surface_input">#F2F2F7</color>
+    <color name="text_main">#1D1D1F</color>
+    <color name="text_sub">#636366</color>
+    <color name="text_hint">#AEAEB2</color>
+    <color name="text_on_brand">#FFFFFF</color>
+    <color name="divider">#E5E5EA</color>
+    <color name="gray_light">#E0E0E0</color>
+    <color name="colorOutline">#79747E</color> <!-- Added for Material 3 Outlines -->
+
+    <!-- Selection & Highlighting -->
+    <color name="text_selection_highlight">#4D6800FF</color>
+
+    <!-- Floating UI / Glass -->
+    <color name="island_bg">#FFFFFF</color>
+    <color name="island_text">#1D1D1F</color>
+    <color name="glass_bg">#26FFFFFF</color>
+    <color name="glass_stroke">#66FFFFFF</color>
+
+    <!-- Constant Colors -->
+    <color name="pure_white">#FFFFFF</color>
+    <color name="pure_black">#000000</color>
+    <color name="status_red">#FF3B30</color>
+
+    <!-- Compatibility Aliases -->
+    <color name="white">#FFFFFF</color>
+    <color name="black">#1D1D1F</color>
+    <color name="cream">#FDFCFB</color>
+    <color name="electric_purple">#6800FF</color>
+
+    <!-- Component States -->
+    <color name="chip_background_selected">#6800FF</color>
+    <color name="chip_background_unselected">#F5F5F7</color>
+</resources>

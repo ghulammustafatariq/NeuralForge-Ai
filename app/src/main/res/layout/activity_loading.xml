@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/loadingRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/main_bg_professional">
+
+    <!-- Premium Top Glow Fade -->
+    <View
+        android:id="@+id/topFadeView"
+        android:layout_width="match_parent"
+        android:layout_height="340dp"
+        android:background="@drawable/bg_top_faded_theme"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Progress Island (Dynamic Island Style) -->
+    <FrameLayout
+        android:id="@+id/progress_island"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/bg_dynamic_island_perfect"
+        android:elevation="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.94">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.progressindicator.CircularProgressIndicator
+                android:id="@+id/islandProgress"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="16dp"
+                android:indeterminate="true"
+                app:indicatorColor="@color/brand_purple"
+                app:indicatorSize="24dp"
+                app:trackColor="@color/brand_purple_alpha15"
+                app:trackThickness="2.5dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvIslandStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:fontFamily="sans-serif-black"
+                android:letterSpacing="0.01"
+                android:text="Knowledge Synthesis Active"
+                android:textColor="@color/text_main"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/islandProgress"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginEnd="16dp"
+                android:src="@drawable/ic_ai_spark"
+                android:contentDescription="@null"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/brand_purple" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
+
+    <!-- Center Stage: Animated Core -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/animationContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/progress_island">
+
+        <!-- Pulsing Background Ring -->
+        <View
+            android:id="@+id/pulseView"
+            android:layout_width="120dp"
+            android:layout_height="113dp"
+            android:alpha="0.1"
+            android:background="@drawable/bg_pill_purple"
+            android:backgroundTint="@color/brand_purple"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/centerLogo"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:padding="24dp"
+            android:src="@drawable/ic_ai_spark"
+            android:background="@color/surface_card"
+            app:shapeAppearanceOverlay="@style/CircleImageView"
+            app:strokeColor="@color/brand_purple_alpha15"
+            app:strokeWidth="1.5dp"
+            android:elevation="12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/brand_purple" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Informational Header -->
+    <LinearLayout
+        android:id="@+id/textGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingHorizontal="48dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintTop_toBottomOf="@id/animationContainer">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-black"
+            android:letterSpacing="-0.03"
+            android:text="@string/loading_title"
+            android:textColor="@color/text_main"
+            android:textSize="32sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center"
+            android:text="@string/loading_subtitle"
+            android:textColor="@color/text_sub"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tvLoadingStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:fontFamily="sans-serif-black"
+            android:letterSpacing="0.12"
+            android:text="FORGING NEURAL PATHWAYS..."
+            android:textColor="@color/brand_purple"
+            android:textSize="12sp"
+            android:textAllCaps="true" />
+    </LinearLayout>
+
+    <!-- Sophisticated Shimmer Skeleton -->
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmer_view_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textGroup"
+        app:shimmer_auto_start="true"
+        app:shimmer_duration="1200"
+        app:shimmer_base_alpha="0.4"
+        app:shimmer_highlight_alpha="0.8">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingHorizontal="24dp"
+                android:paddingBottom="48dp">
+
+                <!-- Varied skeleton entries for more realism -->
+                <include layout="@layout/layout_loading_skeleton" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="160dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="24dp"
+                    android:background="@drawable/bg_concave_card"
+                    android:alpha="0.06" />
+
+                <include layout="@layout/layout_loading_skeleton" />
+
+            </LinearLayout>
+        </ScrollView>
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

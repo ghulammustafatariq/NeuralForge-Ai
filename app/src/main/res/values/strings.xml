@@ -1,0 +1,86 @@
+<resources>
+    <string name="app_name">Neural Forge</string>
+    <string name="hello">Hello,</string>
+    <string name="welcome">Welcome,</string>
+    <string name="forge_user">Forge User</string>
+    <string name="login_logo_description">MindForge Logo</string>
+    <string name="welcome_back">Welcome Back</string>
+    <string name="forge_knowledge_journey">Forge your knowledge journey</string>
+    <string name="email_address">Email Address</string>
+    <string name="password">Password</string>
+    <string name="sign_in">Sign In</string>
+    <string name="or_divider">OR</string>
+    <string name="continue_with_google">Continue with Google</string>
+    <string name="new_to_mindforge">New to MindForge? </string>
+    <string name="join_the_forge">Join the Forge</string>
+
+    <string name="signup_title">Join the Forge</string>
+    <string name="signup_subtitle">Begin your learning metamorphosis</string>
+    <string name="full_name">Full Name</string>
+    <string name="create_password">Create Password</string>
+    <string name="create_account">Create Account</string>
+    <string name="already_member">Already a member? </string>
+
+    <!-- Input Page Strings -->
+    <string name="input_title">Neural Parameters</string>
+    <string name="input_subtitle">Fine-tune your knowledge forge</string>
+    <string name="topic_hint">Concept to forge...</string>
+    <string name="description_hint">Contextual details (optional)</string>
+    <string name="core_parameters_label">CORE PARAMETERS</string>
+    <string name="synthesis_style_label">SYNTHESIS STYLE</string>
+    <string name="style_beginner">Beginner</string>
+    <string name="style_professor">Professor</string>
+    <string name="style_eli5">ELI5</string>
+    <string name="synthesis_depth_label">SYNTHESIS DEPTH</string>
+    <string name="depth_surface">Surface</string>
+    <string name="depth_core">Core</string>
+    <string name="neural_focus_label">NEURAL FOCUS</string>
+    <string name="focus_code">Code &amp; Architecture</string>
+    <string name="focus_math">Mathematical Logic</string>
+    <string name="focus_visuals">Visual Diagrams</string>
+    <string name="forge_request">Forge Request</string>
+
+    <!-- Loading Page Strings -->
+    <string name="loading_title">Forging Knowledge</string>
+    <string name="loading_subtitle">Synchronizing neural pathways...</string>
+
+    <!-- Result Page Strings -->
+    <string name="result_title_placeholder">Knowledge Forge</string>
+    <string name="result_subtitle">Knowledge Synthesis Complete</string>
+    <string name="section_mind_map">MIND MAP</string>
+    <string name="section_explanation">DEEP EXPLANATION</string>
+    <string name="section_math_explanation">MATH EXPLANATION</string>
+    <string name="section_formulas">FORMULAS</string>
+    <string name="section_code">CODE &amp; SYNTAX</string>
+    <string name="section_analytics">VISUAL ANALYTICS</string>
+    <string name="interactive_visualization">Interactive Visualization</string>
+    <string name="synthesizing_explanation">Synthesizing detailed neural explanation...</string>
+    <string name="btn_save_forge">Save to History</string>
+    <string name="btn_new_forge">Forge Another</string>
+    <string name="mind_map_node_label">Node</string>
+    <string name="node_detail_title">Node Insight</string>
+    <string name="close">Close</string>
+    <string name="copy_code">Copy</string>
+    <string name="code_output">Output:</string>
+    <string name="chart_label">Neural Growth Velocity</string>
+    <string name="more_options">More options</string>
+
+    <!-- History Page -->
+    <string name="history_title">Neural History</string>
+    <string name="history_subtitle">Access your forged knowledge</string>
+    <string name="today">Today</string>
+    <string name="yesterday">Yesterday</string>
+    <string name="older">Older</string>
+    <string name="new_forge_fab">New Forge</string>
+
+    <!-- Dynamic Content Templates -->
+    <string name="explanation_template">The conceptual architecture of %1$s represents a significant advancement in learning synthesis. By leveraging neural pathways, we can map the core foundations of %1$s into distinct nodes of knowledge, allowing for a deeper metamorphosis of understanding. This synthesis explores both the theoretical underpinnings and the practical applications required for mastery.</string>
+    <string name="node_detail_template">This knowledge node represents a vital component of the %1$s synthesis. It contains the neural weightings and semantic connections necessary for advanced comprehension.</string>
+    <string name="default_topic">Core Topic</string>
+
+    <string-array name="learning_styles">
+        <item>Beginner</item>
+        <item>Professor</item>
+        <item>ELI5</item>
+    </string-array>
+</resources>

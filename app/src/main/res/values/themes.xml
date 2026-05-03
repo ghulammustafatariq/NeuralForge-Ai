@@ -1,0 +1,71 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.Zzzz" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/brand_purple</item>
+        <item name="colorOnPrimary">@color/text_on_brand</item>
+        <item name="colorPrimaryContainer">@color/brand_purple_alpha15</item>
+        <item name="colorOnPrimaryContainer">@color/brand_purple</item>
+
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/brand_purple_light</item>
+        <item name="colorOnSecondary">@color/text_on_brand</item>
+
+        <!-- Background and Surface colors -->
+        <item name="android:windowBackground">@color/app_background</item>
+        <item name="colorSurface">@color/app_background</item>
+        <item name="colorOnSurface">@color/text_main</item>
+        <item name="colorSurfaceVariant">@color/surface_card</item>
+        <item name="colorOnSurfaceVariant">@color/text_sub</item>
+
+        <!-- Border & Outline Colors - FOR VISIBILITY ACROSS ALL SCREENS -->
+        <item name="colorOutline">@color/colorOutline</item>
+        <item name="colorOutlineVariant">@color/divider</item>
+
+        <!-- Selection and Cursor colors -->
+        <item name="android:textColorHighlight">@color/text_selection_highlight</item>
+        <item name="android:colorControlActivated">@color/brand_purple</item>
+        <item name="android:textSelectHandle">@color/brand_purple</item>
+
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+
+    <style name="Theme.Zzzz" parent="Base.Theme.Zzzz" />
+
+    <style name="CircleImageView" parent="">
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="HeadingStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">24dp</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/text_main</item>
+    </style>
+
+    <style name="PillOption">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingHorizontal">20dp</item>
+        <item name="android:paddingVertical">8dp</item>
+        <item name="android:layout_marginEnd">10dp</item>
+        <item name="android:background">@drawable/pill_bg</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/text_main</item>
+    </style>
+
+    <style name="MindForge_BottomSheetDialog" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/Widget.Material3.BottomSheet.Modal</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+
+    <style name="ChatFabShape" parent="ShapeAppearance.Material3.Corner.ExtraLarge">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">28dp</item>
+    </style>
+</resources>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="400dp"
+    android:height="440dp"
+    android:viewportWidth="400"
+    android:viewportHeight="440">
+
+    <!-- Premium Concave Forge Base - Theme Aware -->
+    <path
+        android:pathData="M0,40 Q200,90 400,40 L400,400 Q200,350 0,400 Z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:type="linear"
+                android:startX="0"
+                android:startY="40"
+                android:endX="400"
+                android:endY="400">
+                <!-- Using @color instead of hardcoded hex for theme support -->
+                <item android:offset="0" android:color="@color/brand_purple" />
+                <item android:offset="1" android:color="@color/brand_purple_light" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- Intricate Neural Spline Network -->
+
+    <!-- Spline 1: Primary Flow -->
+    <path
+        android:pathData="M-50,150 C50,50 150,250 250,150 S350,250 450,150"
+        android:strokeWidth="1.5"
+        android:strokeAlpha="0.2"
+        android:strokeColor="@color/pure_white" />
+
+    <!-- Spline 2: Intersecting Flow -->
+    <path
+        android:pathData="M-20,100 C100,200 300,0 420,100"
+        android:strokeWidth="1.0"
+        android:strokeAlpha="0.15"
+        android:strokeColor="@color/pure_white" />
+
+    <!-- Spline 3: Deep Dynamic Wave -->
+    <path
+        android:pathData="M0,280 C120,180 280,380 400,280"
+        android:strokeWidth="2.0"
+        android:strokeAlpha="0.12"
+        android:strokeColor="@color/pure_white" />
+
+    <!-- Spline 4: Secondary Fine Thread -->
+    <path
+        android:pathData="M-10,220 C100,300 300,140 410,220"
+        android:strokeWidth="0.8"
+        android:strokeAlpha="0.1"
+        android:strokeColor="@color/pure_white" />
+
+    <!-- Spline 5: Top Subtle Curve -->
+    <path
+        android:pathData="M0,80 Q200,160 400,80"
+        android:strokeWidth="1.2"
+        android:strokeAlpha="0.1"
+        android:strokeColor="@color/pure_white" />
+
+    <!-- Neural "Node" Accents (Glowing Connections) -->
+    <path
+        android:pathData="M65,135 A3,3 0 1,1 59,135 A3,3 0 1,1 65,135"
+        android:fillColor="#4DFFFFFF" />
+    <path
+        android:pathData="M335,210 A3.5,3.5 0 1,1 328,210 A3.5,3.5 0 1,1 335,210"
+        android:fillColor="#33FFFFFF" />
+    <path
+        android:pathData="M210,295 A2.5,2.5 0 1,1 205,295 A2.5,2.5 0 1,1 210,295"
+        android:fillColor="#66FFFFFF" />
+    <path
+        android:pathData="M140,180 A2,2 0 1,1 136,180 A2,2 0 1,1 140,180"
+        android:fillColor="#4DFFFFFF" />
+    <path
+        android:pathData="M280,120 A2,2 0 1,1 276,120 A2,2 0 1,1 280,120"
+        android:fillColor="#26FFFFFF" />
+
+    <!-- Top Glossy Surface Rim -->
+    <path
+        android:pathData="M0,40 Q200,90 400,40"
+        android:strokeWidth="1.5"
+        android:strokeColor="#4DFFFFFF" />
+
+    <!-- Subtle Inner Gradient Depth -->
+    <path
+        android:pathData="M15,55 Q200,100 385,55"
+        android:strokeWidth="3"
+        android:strokeAlpha="0.04"
+        android:strokeColor="@color/pure_black" />
+
+</vector>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 1. Ambient Ambient Shadow: Provides depth and separation from background -->
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="30dp" />
+            <solid android:color="#4D000000" />
+        </shape>
+    </item>
+
+    <!-- 2. Hardware Chassis: Deepest OLED Matte Black -->
+    <item android:top="1dp" android:left="1dp" android:right="1dp" android:bottom="2dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#000000" />
+            <corners android:radius="29dp" />
+        </shape>
+    </item>
+
+    <!-- 3. High-Precision Bezel: Razor-thin internal highlight for a premium "diamond-cut" look -->
+    <item android:top="1dp" android:left="1dp" android:right="1dp" android:bottom="1dp">
+        <shape android:shape="rectangle">
+            <corners android:radius="29dp" />
+            <stroke android:width="1.2dp" android:color="#33FFFFFF" />
+        </shape>
+    </item>
+
+    <!-- 4. Liquid Glass Effect: Professional top reflection sweep -->
+    <item android:top="2dp" android:left="12dp" android:right="12dp" android:bottom="34dp">
+        <shape android:shape="rectangle">
+            <corners android:radius="20dp" />
+            <gradient
+                android:angle="270"
+                android:startColor="#26FFFFFF"
+                android:endColor="#00000000" />
+        </shape>
+    </item>
+
+    <!-- 5. Neural Glow Accent: Subtle bottom intelligence indicator -->
+    <item android:top="40dp" android:left="35dp" android:right="35dp" android:bottom="3dp">
+        <shape android:shape="rectangle">
+            <corners android:radius="10dp" />
+            <gradient
+                android:angle="90"
+                android:startColor="#1A6800FF"
+                android:endColor="#00000000" />
+        </shape>
+    </item>
+</layer-list>

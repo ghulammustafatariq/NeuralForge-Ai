@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Use pure_white to ensure text is visible on the purple background when selected -->
+    <item android:color="@color/pure_white" android:state_checked="true" />
+    <!-- Theme-aware muted text when unselected -->
+    <item android:color="@color/text_sub" />
+</selector>
