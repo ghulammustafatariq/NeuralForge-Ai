@@ -18,7 +18,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.google.android.material.button.MaterialButton;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -48,14 +48,13 @@ public class CodeFragment extends Fragment {
                     if (snippets.length() == 0) {
                         showNoContent(inflater, containerView, "No code snippets for this topic");
                     } else {
-                        int maxSnippets = Math.min(snippets.length(), 3);
-                        for (int i = 0; i < maxSnippets; i++) {
+                        for (int i = 0; i < snippets.length(); i++) {
                             JSONObject snippet = snippets.optJSONObject(i);
                             if (snippet == null) continue;
                             addCodeCard(inflater, containerView,
                                     snippet.optString("heading", "Code Example"),
                                     snippet.optString("code", ""),
-                                    snippet.optString("output", ""));
+                                    snippet.optString("output", ""), i);
                         }
                     }
                 } catch (Exception e) {
@@ -69,20 +68,14 @@ public class CodeFragment extends Fragment {
 
         AddContentCallback cb = getActivity() instanceof AddContentCallback ? (AddContentCallback) getActivity() : null;
 
-        MaterialButton btnAdd = new MaterialButton(requireContext());
-        btnAdd.setText("+ Add Code");
-        btnAdd.setTextColor(Color.parseColor("#6800FF"));
-        btnAdd.setStrokeColorResource(android.R.color.transparent);
-        btnAdd.setBackgroundColor(Color.TRANSPARENT);
-        btnAdd.setGravity(Gravity.CENTER);
-        btnAdd.setTextSize(14);
-        btnAdd.setOnClickListener(v -> { if (cb != null) cb.onAddCode(); });
-        containerView.addView(btnAdd);
+        containerView.addView(AddButtonFactory.create(requireContext(), "+ Add Code", () -> {
+            if (cb != null) cb.onAddCode();
+        }));
 
         return view;
     }
 
-    private void addCodeCard(LayoutInflater inflater, LinearLayout container, String heading, String code, String output) {
+    private void addCodeCard(LayoutInflater inflater, LinearLayout container, String heading, String code, String output, int index) {
         View card = inflater.inflate(R.layout.item_code_flashcard, container, false);
         ((TextView) card.findViewById(R.id.tvCodeHeading)).setText(heading);
         ((TextView) card.findViewById(R.id.tvCodeContent)).setText(code);
@@ -93,6 +86,18 @@ public class CodeFragment extends Fragment {
             cb.setPrimaryClip(ClipData.newPlainText("Code", code));
             Toast.makeText(requireContext(), "Copied", Toast.LENGTH_SHORT).show();
         });
+        ImageButton btnDelete = card.findViewById(R.id.btnDeleteCard);
+        final int codeIndex = index;
+        btnDelete.setOnClickListener(v -> new MaterialAlertDialogBuilder(requireContext(), R.style.MindForge_Dialog)
+                .setTitle("Delete Code")
+                .setMessage("Remove \"" + heading + "\"?")
+                .setPositiveButton("Delete", (d, w) -> {
+                    if (getActivity() instanceof DeleteContentCallback) {
+                        ((DeleteContentCallback) getActivity()).onDeleteCode(codeIndex);
+                    }
+                })
+                .setNegativeButton("Cancel", null)
+                .show());
         container.addView(card, container.getChildCount() - 1);
     }
 

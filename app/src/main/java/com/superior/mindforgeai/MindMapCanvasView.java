@@ -50,7 +50,7 @@ public class MindMapCanvasView extends View {
     private float dragStartWorldX, dragStartWorldY;
     private boolean isDragging;
     private long lastTapTime;
-    private Node pendingTapNode;
+    private Node pendingSingleTapNode;
 
     private final Paint shadowPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private final Paint nodeFillPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -78,6 +78,8 @@ public class MindMapCanvasView extends View {
     public interface OnNodeInteractionListener {
         void onNodeLongPress(String name, String detail);
         void onNodeChanged();
+        void onNodeDeleteRequest(Node node);
+        void onNodeDoubleTap(Node node);
     }
 
     public MindMapCanvasView(Context context) {
@@ -204,8 +206,7 @@ public class MindMapCanvasView extends View {
     private void layoutTree() {
         if (root == null) return;
 
-        float levelSpacing = 200 * density;
-        float verticalSpacing = 110 * density;
+        float levelSpacing = 210 * density;
         float startX = 80 * density;
         float startY = 800 * density;
 
@@ -213,10 +214,8 @@ public class MindMapCanvasView extends View {
         root.y = startY;
         allNodes.add(0, root);
 
-        for (Node child : root.children) {
-            float childX = startX + levelSpacing;
-            layoutSubtree(child, childX, childY(positionInParent(child), siblingCount(child)),
-                    levelSpacing * 0.92f, verticalSpacing * 0.88f);
+        if (!root.children.isEmpty()) {
+            layoutSubtree(root, startX, levelSpacing, true);
         }
 
         float maxX = 0, maxY = 0, minY = Float.MAX_VALUE;
@@ -234,40 +233,75 @@ public class MindMapCanvasView extends View {
         for (Node n : allNodes) {
             n.y += offset;
         }
-        root.y += offset;
     }
 
-    private void layoutSubtree(Node node, float x, float y, float levelSpacing, float verticalSpacing) {
+    private void layoutSubtree(Node node, float x, float levelSpacing, boolean absoluteY) {
         node.x = x;
-        node.y = y;
 
-        if (node.children.isEmpty()) return;
+        if (node.children.isEmpty()) {
+            if (!absoluteY) node.y = 0;
+            computeSubtreeBounds(node);
+            return;
+        }
 
-        float totalH = (node.children.size() - 1) * verticalSpacing;
-        float startY = y - totalH / 2f;
         float childX = x + levelSpacing;
+        float nextSpacing = levelSpacing * 0.94f;
+        float gap = 20 * density;
 
+        for (Node child : node.children) {
+            layoutSubtree(child, childX, nextSpacing, false);
+        }
+
+        float top = 0;
         for (int i = 0; i < node.children.size(); i++) {
             Node child = node.children.get(i);
-            float childY = startY + i * verticalSpacing;
-            layoutSubtree(child, childX, childY,
-                    levelSpacing * 0.92f, verticalSpacing * 0.88f);
+            if (i > 0) top += gap;
+            float dy = top - child.subtreeMinY;
+            child.y += dy;
+            shiftDescendants(child, dy);
+            top += (child.subtreeMaxY - child.subtreeMinY);
+        }
+
+        float center = -top / 2f;
+        for (Node child : node.children) {
+            child.y += center;
+            shiftDescendants(child, center);
+        }
+
+        if (absoluteY) {
+            for (Node child : node.children) {
+                child.y += node.y;
+                shiftDescendants(child, node.y);
+            }
+        } else {
+            node.y = 0;
+        }
+        computeSubtreeBounds(node);
+    }
+
+    private void computeSubtreeBounds(Node node) {
+        float h = getNodeHeight(node);
+        if (node.children.isEmpty()) {
+            node.subtreeMinY = -h / 2f;
+            node.subtreeMaxY = h / 2f;
+        } else {
+            float minY = Float.MAX_VALUE;
+            float maxY = -Float.MAX_VALUE;
+            for (Node child : node.children) {
+                float childRelY = child.y - node.y;
+                minY = Math.min(minY, childRelY + child.subtreeMinY);
+                maxY = Math.max(maxY, childRelY + child.subtreeMaxY);
+            }
+            node.subtreeMinY = Math.min(-h / 2f, minY);
+            node.subtreeMaxY = Math.max(h / 2f, maxY);
         }
     }
 
-    private int positionInParent(Node child) {
-        if (child.parent == null) return 0;
-        return child.parent.children.indexOf(child);
-    }
-
-    private int siblingCount(Node child) {
-        if (child.parent == null) return 1;
-        return child.parent.children.size();
-    }
-
-    private float childY(int index, int total) {
-        float spacing = 110 * density;
-        return (index - (total - 1) / 2f) * spacing;
+    private void shiftDescendants(Node node, float dy) {
+        for (Node child : node.children) {
+            child.y += dy;
+            shiftDescendants(child, dy);
+        }
     }
 
     private float getNodeWidth(Node node) {
@@ -382,14 +416,12 @@ public class MindMapCanvasView extends View {
 
     private void drawConnection(Canvas canvas, Node parent, Node child) {
         float pw = getNodeWidth(parent);
-        float ph = getNodeHeight(parent);
         float cw = getNodeWidth(child);
-        float ch = getNodeHeight(child);
 
         float startX = parent.x + pw / 2f;
-        float startY = parent.y + ph / 2f;
+        float startY = parent.y;
         float endX = child.x - cw / 2f;
-        float endY = child.y + ch / 2f;
+        float endY = child.y;
 
         float midX = (startX + endX) / 2f;
 
@@ -406,9 +438,14 @@ public class MindMapCanvasView extends View {
 
     private void drawNodes(Canvas canvas) {
         for (Node node : allNodes) {
-            if (!node.expanded && node.parent != null) continue;
+            if (!isNodeVisible(node)) continue;
             drawNode(canvas, node);
         }
+    }
+
+    private boolean isNodeVisible(Node node) {
+        if (node.parent == null) return true;
+        return node.parent.expanded;
     }
 
     private void drawNode(Canvas canvas, Node node) {
@@ -504,6 +541,7 @@ public class MindMapCanvasView extends View {
         float mmOY = mmY + 4 * density;
 
         for (Node node : allNodes) {
+            if (!isNodeVisible(node)) continue;
             minimapDotPaint.setColor(node.isRoot ? 0xFF6800FF : node.branchColor);
             minimapDotPaint.setAlpha(180);
             float nx = mmOX + node.x * mmScale;
@@ -610,7 +648,7 @@ public class MindMapCanvasView extends View {
 
         for (int i = allNodes.size() - 1; i >= 0; i--) {
             Node node = allNodes.get(i);
-            if (!node.expanded && node.parent != null) continue;
+            if (!isNodeVisible(node)) continue;
 
             float w = getNodeWidth(node);
             float h = getNodeHeight(node);
@@ -637,31 +675,7 @@ public class MindMapCanvasView extends View {
 
     private void toggleNode(Node node) {
         node.expanded = !node.expanded;
-
-        if (!node.expanded) {
-            collapseDescendants(node);
-        } else if (node.parent != null) {
-            Node other = null;
-            for (Node sibling : node.parent.children) {
-                if (sibling != node && sibling.expanded) {
-                    other = sibling;
-                    break;
-                }
-            }
-            if (other != null && other.children.size() >= node.children.size()) {
-                other.expanded = false;
-                collapseDescendants(other);
-            }
-        }
-
         invalidate();
-    }
-
-    private void collapseDescendants(Node node) {
-        for (Node child : node.children) {
-            child.expanded = false;
-            collapseDescendants(child);
-        }
     }
 
     private void focusNode(Node node) {
@@ -691,6 +705,92 @@ public class MindMapCanvasView extends View {
         }, 2000);
     }
 
+    public void deleteNode(Node nodeToDelete) {
+        if (nodeToDelete == null || nodeToDelete.isRoot || root == null) return;
+
+        Node parent = nodeToDelete.parent;
+        if (parent != null) {
+            parent.children.remove(nodeToDelete);
+        }
+
+        removeFromAllNodes(nodeToDelete);
+
+        layoutTree();
+        autoFit();
+        invalidate();
+
+        if (interactionListener != null) {
+            interactionListener.onNodeChanged();
+        }
+    }
+
+    private void removeFromAllNodes(Node node) {
+        allNodes.remove(node);
+        for (Node child : node.children) {
+            removeFromAllNodes(child);
+        }
+    }
+
+    public void updateFromJson(JSONObject treeJson) {
+        allNodes.clear();
+        root = null;
+        searchResults.clear();
+        searchIndex = -1;
+        searchQuery = "";
+
+        try {
+            JSONObject rootJson = treeJson.optJSONObject("root");
+            if (rootJson == null) return;
+
+            root = new Node(rootJson.optString("name", "Topic"),
+                    rootJson.optString("detail", ""), true, 0);
+            root.branchColor = 0xFF6800FF;
+
+            JSONArray childrenJson = treeJson.optJSONArray("children");
+            if (childrenJson != null) {
+                for (int i = 0; i < childrenJson.length(); i++) {
+                    JSONObject child = childrenJson.optJSONObject(i);
+                    if (child != null) {
+                        parseChild(root, child, i % BRANCH_COLORS.length);
+                    }
+                }
+            }
+
+            layoutTree();
+            autoFit();
+            invalidate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public JSONObject getTreeJson() {
+        if (root == null) return null;
+        try {
+            JSONObject json = new JSONObject();
+            json.put("root", nodeToJson(root));
+            JSONArray childrenArr = new JSONArray();
+            for (Node child : root.children) {
+                childrenArr.put(nodeToJson(child));
+            }
+            json.put("children", childrenArr);
+            return json;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    private JSONObject nodeToJson(Node node) throws Exception {
+        JSONObject json = new JSONObject();
+        json.put("name", node.name);
+        json.put("detail", node.detail != null ? node.detail : "");
+        JSONArray childrenArr = new JSONArray();
+        for (Node child : node.children) {
+            childrenArr.put(nodeToJson(child));
+        }
+        json.put("children", childrenArr);
+        return json;
+    }
     public void zoomToFit() {
         if (root == null) return;
 
@@ -745,8 +845,12 @@ public class MindMapCanvasView extends View {
         float worldW = totalWidth * scale;
         float worldH = totalHeight * scale;
 
-        offsetX = Math.max(viewW - worldW - 50 * density, Math.min(50 * density, offsetX));
-        offsetY = Math.max(viewH - worldH - 50 * density, Math.min(50 * density, offsetY));
+        float pad = 100 * density;
+        float minimapPadX = 170 * density;
+        float minimapPadY = 190 * density;
+
+        offsetX = Math.max(viewW - worldW - minimapPadX, Math.min(pad, offsetX));
+        offsetY = Math.max(viewH - worldH - minimapPadY, Math.min(pad, offsetY));
     }
 
     public void searchNode(String query) {
@@ -833,8 +937,8 @@ public class MindMapCanvasView extends View {
         @Override
         public boolean onDoubleTap(MotionEvent e) {
             Node node = hitTestNode(e.getX(), e.getY());
-            if (node != null) {
-                zoomToFitBranch(node);
+            if (node != null && interactionListener != null) {
+                interactionListener.onNodeDoubleTap(node);
                 return true;
             }
             return false;
@@ -846,12 +950,14 @@ public class MindMapCanvasView extends View {
             if (node != null && interactionListener != null) {
                 performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
                 interactionListener.onNodeLongPress(node.name, node.detail);
+                interactionListener.onNodeDeleteRequest(node);
             }
         }
 
         @Override
         public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
             if (scaleDetector.isInProgress()) return false;
+            if (touchedNode != null) return false;
             offsetX -= distanceX;
             offsetY -= distanceY;
             clampOffset();
@@ -880,7 +986,7 @@ public class MindMapCanvasView extends View {
         anim.start();
     }
 
-    static class Node {
+    public static class Node {
         String name, detail;
         boolean isRoot, expanded = true;
         int depth;
@@ -888,6 +994,7 @@ public class MindMapCanvasView extends View {
         Node parent;
         List<Node> children = new ArrayList<>();
         float x, y;
+        float subtreeMinY, subtreeMaxY;
 
         Node(String name, String detail, boolean isRoot, int depth) {
             this.name = name;

@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.EditText;
@@ -14,8 +15,12 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -52,6 +57,12 @@ public class ChatBotActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
+        Window window = getWindow();
+        window.getDecorView().setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+        window.setStatusBarColor(Color.TRANSPARENT);
+        try {
         setContentView(R.layout.activity_chatbot);
 
         topic = getIntent().getStringExtra("TOPIC");
@@ -74,8 +85,10 @@ public class ChatBotActivity extends AppCompatActivity {
         rvMessages.setAdapter(adapter);
 
         // Entrance animation for the chat container
-        findViewById(R.id.rvChatMessages).setAlpha(0f);
-        findViewById(R.id.rvChatMessages).animate().alpha(1f).setDuration(500).start();
+        if (rvMessages != null) {
+            rvMessages.setAlpha(0f);
+            rvMessages.animate().alpha(1f).setDuration(500).start();
+        }
 
         messages.add(new ChatMessage("👋 Ask me anything about \"" + topic + "\"!", false));
         adapter.notifyItemInserted(0);
@@ -83,20 +96,25 @@ public class ChatBotActivity extends AppCompatActivity {
         btnSend.setOnClickListener(v -> sendMessage());
         
         runEntranceAnimations();
+        } catch (Exception e) {
+            Toast.makeText(this, "Chat error: " + e.toString(), Toast.LENGTH_LONG).show();
+            finish();
+        }
     }
 
     private void runEntranceAnimations() {
-        Animation fallDown = AnimationUtils.loadAnimation(this, R.anim.fall_down);
-        View titleParent = (View) findViewById(R.id.tvChatTitle).getParent();
-        if (titleParent != null) {
-            titleParent.startAnimation(fallDown);
-        }
-        
-        View inputContainer = (View) etInput.getParent();
-        if (inputContainer != null) {
-            inputContainer.setTranslationY(100f);
-            inputContainer.animate().translationY(0f).setDuration(500).start();
-        }
+        try {
+            Animation fallDown = AnimationUtils.loadAnimation(this, R.anim.fall_down);
+            TextView tvTitle = findViewById(R.id.tvChatTitle);
+            if (tvTitle != null && tvTitle.getParent() instanceof View) {
+                ((View) tvTitle.getParent()).startAnimation(fallDown);
+            }
+            if (etInput != null && etInput.getParent() instanceof View) {
+                View inputContainer = (View) etInput.getParent();
+                inputContainer.setTranslationY(100f);
+                inputContainer.animate().translationY(0f).setDuration(500).start();
+            }
+        } catch (Exception ignored) {}
     }
 
     private void sendMessage() {
@@ -139,7 +157,7 @@ public class ChatBotActivity extends AppCompatActivity {
 
         SharedPreferences prefs = getSharedPreferences("MindForgePrefs", MODE_PRIVATE);
         String apiKey = prefs.getString("apiKey", "");
-        if (apiKey.isEmpty()) apiKey = "sk-c63f425226ce4ffba7b80c3daa758105";
+        if (apiKey.isEmpty()) apiKey = "YOUR_API_KEY_HERE";
 
         Request request = new Request.Builder()
                 .url("https://api.deepseek.com/chat/completions")
@@ -233,7 +251,13 @@ public class ChatBotActivity extends AppCompatActivity {
 
         @Override
         public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-            holder.tvText.setText(items.get(position).text);
+            String text = items.get(position).text;
+            if (items.get(position).isUser) {
+                holder.tvText.setText(text);
+            } else {
+                String converted = LaTeXConverter.convert(text);
+                holder.tvText.setText(MarkdownRenderer.render(converted));
+            }
             
             // Animate only the last inserted item
             if (position == items.size() - 1) {

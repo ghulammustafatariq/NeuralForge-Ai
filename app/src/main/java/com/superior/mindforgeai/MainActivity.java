@@ -223,10 +223,21 @@ public class MainActivity extends AppCompatActivity {
                                 int depth = doc.getLong("depth") != null ? doc.getLong("depth").intValue() : 1;
                                 String aiResult = doc.getString("aiResult");
                                 long createdAt = doc.getLong("createdAt") != null ? doc.getLong("createdAt") : System.currentTimeMillis();
+                                String playlistId = doc.getString("playlistId");
 
                                 if (id != null && topic != null) {
                                     HistoryEntity entity = new HistoryEntity(id, uid, topic, description != null ? description : "",
                                             style != null ? style : "Beginner", depth, aiResult != null ? aiResult : "", createdAt);
+
+                                    if (playlistId != null && !playlistId.isEmpty()) {
+                                        entity.setPlaylistId(playlistId);
+                                    } else {
+                                        HistoryEntity local = db.historyDao().getById(id);
+                                        if (local != null) {
+                                            entity.setPlaylistId(local.getPlaylistId());
+                                        }
+                                    }
+
                                     db.historyDao().insert(entity);
                                 }
                             } catch (Exception e) {
@@ -399,7 +410,7 @@ public class MainActivity extends AppCompatActivity {
         });
         
         if (btnHistoryIsland != null) btnHistoryIsland.setOnClickListener(v -> {
-            startActivity(new Intent(this, HistoryActivity.class));
+            startActivity(new Intent(this, PlaylistActivity.class));
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         });
     }

@@ -41,4 +41,15 @@
     <!-- Component States -->
     <color name="chip_background_selected">#6800FF</color>
     <color name="chip_background_unselected">#F5F5F7</color>
+    <!-- Glassmorphic card background (light mode = 75% white) -->
+    <color name="glass_card_bg">#BFFFFFFF</color>
+
+    <!-- Code Block Theme (Light) -->
+    <color name="code_bg">#1E1E2E</color>
+    <color name="code_header_bg">#2A2A3E</color>
+    <color name="code_text">#D4D4D4</color>
+    <color name="code_output">#4EC9B0</color>
+
+    <!-- Dialog Surface -->
+    <color name="dialog_surface">#E8EAF6</color>
 </resources>

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/playlistRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/main_bg_professional">
+
+    <!-- Top glow overlay -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:background="@drawable/bg_top_faded_theme" />
+
+    <!-- Main content -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!-- Header -->
+        <LinearLayout
+            android:id="@+id/plHeaderSection"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="28dp"
+            android:paddingTop="72dp"
+            android:paddingBottom="12dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="KNOWLEDGE"
+                android:textColor="@color/brand_purple"
+                android:textSize="12sp"
+                android:fontFamily="sans-serif-black"
+                android:letterSpacing="0.14"
+                android:textAllCaps="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Library"
+                android:textColor="@color/text_main"
+                android:textSize="38sp"
+                android:fontFamily="sans-serif-black"
+                android:letterSpacing="-0.03" />
+
+            <!-- Pill tabs — fully transparent container, only pills are visible -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal"
+                android:background="@android:color/transparent"
+                android:padding="0dp">
+
+                <TextView
+                    android:id="@+id/tabPlaylists"
+                    android:layout_width="130dp"
+                    android:layout_height="match_parent"
+                    android:text="Collections"
+                    android:gravity="center"
+                    android:textSize="13sp"
+                    android:fontFamily="sans-serif-black"
+                    android:background="@drawable/bg_pill_purple"
+                    android:backgroundTint="@color/brand_purple"
+                    android:textColor="@color/text_on_brand"
+                    android:clickable="true"
+                    android:focusable="true" />
+
+                <TextView
+                    android:id="@+id/tabAllNotes"
+                    android:layout_width="130dp"
+                    android:layout_height="match_parent"
+                    android:text="All Notes"
+                    android:gravity="center"
+                    android:textSize="13sp"
+                    android:fontFamily="sans-serif-bold"
+                    android:background="@android:color/transparent"
+                    android:textColor="@color/text_sub"
+                    android:clickable="true"
+                    android:focusable="true" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Collections Grid -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvPlaylists"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:clipToPadding="false"
+            android:paddingHorizontal="14dp"
+            android:paddingTop="4dp"
+            android:paddingBottom="100dp"
+            android:visibility="visible" />
+
+        <!-- All Notes List -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvAllNotes"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:clipToPadding="false"
+            android:paddingHorizontal="16dp"
+            android:paddingTop="4dp"
+            android:paddingBottom="100dp"
+            android:visibility="gone" />
+
+    </LinearLayout>
+
+    <!-- New Collection FAB -->
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/fabNewPlaylist"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="24dp"
+        android:text="New Collection"
+        android:textColor="@color/text_on_brand"
+        android:fontFamily="sans-serif-black"
+        app:icon="@android:drawable/ic_input_add"
+        app:iconTint="@color/text_on_brand"
+        app:backgroundTint="@color/brand_purple" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -27,6 +28,25 @@ public class HistoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     public interface OnItemClickListener {
         void onItemClick(HistoryEntity entity);
+    }
+
+    public interface OnItemLongClickListener {
+        void onItemLongClick(HistoryEntity entity);
+    }
+
+    public interface OnItemDeleteListener {
+        void onItemDelete(HistoryEntity entity);
+    }
+
+    private OnItemLongClickListener longClickListener;
+    private OnItemDeleteListener deleteListener;
+
+    public void setOnItemLongClickListener(OnItemLongClickListener l) {
+        this.longClickListener = l;
+    }
+
+    public void setOnItemDeleteListener(OnItemDeleteListener l) {
+        this.deleteListener = l;
     }
 
     public HistoryAdapter(List<Object> items, OnItemClickListener listener) {
@@ -96,6 +116,13 @@ public class HistoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             itemHolder.tvDate.setText(detail);
 
             itemHolder.itemView.setOnClickListener(v -> listener.onItemClick(entity));
+            itemHolder.itemView.setOnLongClickListener(v -> {
+                if (longClickListener != null) longClickListener.onItemLongClick(entity);
+                return true;
+            });
+            itemHolder.btnDelete.setOnClickListener(v -> {
+                if (deleteListener != null) deleteListener.onItemDelete(entity);
+            });
         }
     }
 
@@ -143,10 +170,12 @@ public class HistoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     public static class ItemViewHolder extends RecyclerView.ViewHolder {
         TextView tvTopic, tvDate;
+        ImageButton btnDelete;
         public ItemViewHolder(@NonNull View itemView) {
             super(itemView);
             tvTopic = itemView.findViewById(R.id.tvHistoryTopic);
             tvDate = itemView.findViewById(R.id.tvHistoryDate);
+            btnDelete = itemView.findViewById(R.id.btnDeleteHistory);
         }
     }
 }

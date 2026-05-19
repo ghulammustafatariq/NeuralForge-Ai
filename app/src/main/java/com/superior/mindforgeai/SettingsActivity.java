@@ -173,7 +173,7 @@ public class SettingsActivity extends AppCompatActivity {
 
         String apiKey = prefs.getString("apiKey", "");
         if (apiKey.isEmpty()) {
-            apiKey = "sk-c63f425226ce4ffba7b80c3daa758105";
+            apiKey = "YOUR_API_KEY_HERE";
         }
         etApiKey.setText(apiKey);
 

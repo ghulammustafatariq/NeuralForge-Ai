@@ -5,11 +5,11 @@
     android:layout_height="wrap_content"
     android:layout_marginBottom="14dp"
     android:layout_marginHorizontal="12dp"
-    app:cardBackgroundColor="@color/surface_card"
+    app:cardBackgroundColor="@color/glass_card_bg"
     app:cardCornerRadius="28dp"
-    app:cardElevation="2dp"
+    app:cardElevation="0dp"
     app:strokeColor="@color/divider"
-    app:strokeWidth="1.2dp"
+    app:strokeWidth="1dp"
     android:clickable="true"
     android:focusable="true"
     android:foreground="?attr/selectableItemBackground">
@@ -86,6 +86,20 @@
             app:layout_constraintTop_toTopOf="parent"
             app:tint="@color/text_main"
             android:contentDescription="View Detail" />
+
+        <ImageButton
+            android:id="@+id/btnDeleteHistory"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:src="@drawable/ic_delete"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:scaleType="centerInside"
+            app:tint="#FF3B30"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/ivChevron"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginEnd="8dp"
+            android:contentDescription="Delete" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>

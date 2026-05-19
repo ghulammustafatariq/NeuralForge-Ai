@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="@color/dialog_surface">
+
+    <TextView
+        android:id="@+id/dialogTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Title"
+        android:textColor="@color/brand_purple"
+        android:textSize="20sp"
+        android:fontFamily="sans-serif-black"
+        android:gravity="center"
+        android:layout_marginBottom="10dp" />
+
+    <TextView
+        android:id="@+id/dialogSubtitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="How would you like to add content?"
+        android:textColor="@color/text_sub"
+        android:textSize="14sp"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center"
+        android:layout_marginBottom="24dp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:text="Write My Own"
+        android:textColor="@color/text_on_brand"
+        android:textSize="15sp"
+        android:fontFamily="sans-serif-bold"
+        app:cornerRadius="16dp"
+        app:backgroundTint="@color/brand_purple"
+        app:icon="@drawable/ic_pencil"
+        app:iconTint="@color/text_on_brand"
+        app:iconGravity="textStart"
+        app:iconPadding="12dp"
+        android:layout_marginBottom="12dp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnSecondary"
+        style="@style/Widget.Material3.Button.OutlinedButton"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:text="Generate from AI"
+        android:textColor="@color/brand_purple"
+        android:textSize="15sp"
+        android:fontFamily="sans-serif-bold"
+        app:cornerRadius="16dp"
+        app:strokeColor="@color/brand_purple"
+        app:strokeWidth="1.5dp"
+        app:icon="@drawable/ic_ai_spark"
+        app:iconTint="@color/brand_purple"
+        app:iconGravity="textStart"
+        app:iconPadding="12dp"
+        android:layout_marginBottom="16dp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnCancel"
+        style="@style/Widget.Material3.Button.TextButton"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:text="Cancel"
+        android:textColor="@color/text_sub"
+        android:textSize="14sp"
+        android:fontFamily="sans-serif-medium"
+        app:cornerRadius="12dp" />
+
+</LinearLayout>

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="20dp"
-    app:cardBackgroundColor="#0D0D0F"
+    app:cardBackgroundColor="@color/code_bg"
     app:cardCornerRadius="24dp"
     app:cardElevation="4dp"
     app:strokeColor="@color/brand_purple_alpha15"
@@ -18,7 +18,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:background="@color/brand_purple_alpha15"
+            android:background="@color/code_header_bg"
             android:gravity="center_vertical"
             android:paddingHorizontal="20dp">
 
@@ -42,6 +42,15 @@
                 android:src="@drawable/ic_copy"
                 app:tint="#FFFFFF"
                 android:contentDescription="Copy" />
+
+            <ImageButton
+                android:id="@+id/btnDeleteCard"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_delete"
+                app:tint="#FF3B30"
+                android:contentDescription="Delete" />
         </LinearLayout>
 
         <LinearLayout
@@ -57,14 +66,14 @@
                 android:fontFamily="monospace"
                 android:lineSpacingExtra="6dp"
                 android:text="print('hello')"
-                android:textColor="#DCDCAA"
+                android:textColor="@color/code_text"
                 android:textSize="13sp" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginVertical="18dp"
-                android:background="#2AFFFFFF" />
+                android:background="@color/divider" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -82,7 +91,7 @@
                 android:layout_marginTop="6dp"
                 android:fontFamily="monospace"
                 android:text="Hello World"
-                android:textColor="#4EC9B0"
+                android:textColor="@color/code_output"
                 android:textSize="13sp" />
         </LinearLayout>
     </LinearLayout>

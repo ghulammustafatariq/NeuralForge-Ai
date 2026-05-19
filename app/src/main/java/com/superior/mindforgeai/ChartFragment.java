@@ -1,5 +1,6 @@
 package com.superior.mindforgeai;
 
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -16,6 +17,7 @@ import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.Chart;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.charts.ScatterChart;
+import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
@@ -24,6 +26,7 @@ import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.data.ScatterData;
 import com.github.mikephil.charting.data.ScatterDataSet;
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
@@ -109,11 +112,13 @@ public class ChartFragment extends Fragment {
         styleChart(chart);
         List<BarEntry> entries = new ArrayList<>();
         JSONArray values = bd.optJSONArray("values");
+        JSONArray labels = bd.optJSONArray("labels");
         if (values != null) for (int i = 0; i < values.length(); i++) entries.add(new BarEntry(i, (float) values.optDouble(i, 0)));
         BarDataSet ds = new BarDataSet(entries, "Comparison");
         ds.setColor(Color.parseColor("#6800FF"));
-        ds.setValueTextColor(Color.parseColor("#6800FF"));
+        ds.setValueTextColor(getTextColor());
         chart.setData(new BarData(ds));
+        applyLabels(chart, labels);
         chart.animateY(1000);
         chartContainer.addView(chart);
         currentChart = chart;
@@ -129,6 +134,7 @@ public class ChartFragment extends Fragment {
         styleChart(chart);
         List<Entry> entries = new ArrayList<>();
         JSONArray values = ld.optJSONArray("values");
+        JSONArray labels = ld.optJSONArray("labels");
         if (values != null) for (int i = 0; i < values.length(); i++) entries.add(new Entry(i, (float) values.optDouble(i, 0)));
         LineDataSet ds = new LineDataSet(entries, "Trend");
         ds.setColor(Color.parseColor("#6800FF"));
@@ -138,8 +144,9 @@ public class ChartFragment extends Fragment {
         ds.setFillColor(Color.parseColor("#6800FF"));
         ds.setFillAlpha(30);
         ds.setCircleColor(Color.parseColor("#6800FF"));
-        ds.setValueTextColor(Color.parseColor("#6800FF"));
+        ds.setValueTextColor(getTextColor());
         chart.setData(new LineData(ds));
+        applyLabels(chart, labels);
         chart.animateY(1000);
         chartContainer.addView(chart);
         currentChart = chart;
@@ -155,22 +162,44 @@ public class ChartFragment extends Fragment {
         styleChart(chart);
         List<Entry> entries = new ArrayList<>();
         JSONArray values = sd.optJSONArray("values");
+        JSONArray labels = sd.optJSONArray("labels");
         if (values != null) for (int i = 0; i < values.length(); i++) entries.add(new Entry(i, (float) values.optDouble(i, 0)));
         ScatterDataSet ds = new ScatterDataSet(entries, "Distribution");
         ds.setColor(Color.parseColor("#6800FF"));
         ds.setScatterShape(ScatterChart.ScatterShape.CIRCLE);
         ds.setScatterShapeSize(12f);
-        ds.setValueTextColor(Color.parseColor("#6800FF"));
+        ds.setValueTextColor(getTextColor());
         chart.setData(new ScatterData(ds));
+        applyLabels(chart, labels);
         chart.animateY(1000);
         chartContainer.addView(chart);
         currentChart = chart;
     }
 
+    private void applyLabels(Chart chart, JSONArray labels) {
+        if (labels == null) return;
+        String[] labelArr = new String[labels.length()];
+        for (int i = 0; i < labels.length(); i++) {
+            labelArr[i] = labels.optString(i, "");
+        }
+        chart.getXAxis().setValueFormatter(new IndexAxisValueFormatter(labelArr));
+        chart.getXAxis().setGranularity(1f);
+        chart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
+        chart.getXAxis().setTextColor(getTextColor());
+    }
+
+    private int getTextColor() {
+        boolean isDark = (requireContext().getResources().getConfiguration().uiMode
+                & Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES;
+        return isDark ? Color.parseColor("#CBD5E1") : Color.parseColor("#1D1D1F");
+    }
+
     private void styleChart(Chart chart) {
         chart.getDescription().setEnabled(false);
-        chart.setBackgroundColor(Color.parseColor("#FFF9EB"));
-        chart.getLegend().setTextColor(Color.parseColor("#1D1D1F"));
+        boolean isDark = (requireContext().getResources().getConfiguration().uiMode
+                & Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES;
+        chart.setBackgroundColor(isDark ? Color.parseColor("#161624") : Color.parseColor("#FFF9EB"));
+        chart.getLegend().setTextColor(isDark ? Color.parseColor("#CBD5E1") : Color.parseColor("#1D1D1F"));
         chart.invalidate();
     }
 }

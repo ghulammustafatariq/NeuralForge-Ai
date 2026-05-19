@@ -30,4 +30,56 @@
         <item name="android:windowLightStatusBar">false</item>
         <item name="android:windowLightNavigationBar">false</item>
     </style>
+
+    <style name="MindForge_Dialog" parent="ThemeOverlay.Material3.MaterialAlertDialog">
+        <item name="colorPrimary">@color/brand_purple</item>
+        <item name="colorOnPrimary">@color/text_on_brand</item>
+        <item name="colorSurface">@color/surface_card</item>
+        <item name="colorOnSurface">@color/text_main</item>
+        <item name="dialogCornerRadius">24dp</item>
+        <item name="android:background">@drawable/dialog_background</item>
+        <item name="android:backgroundDimAmount">0.65</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="shapeAppearanceOverlay">@style/DialogShapeAppearance</item>
+        <item name="android:textColorPrimary">@color/text_main</item>
+        <item name="buttonBarPositiveButtonStyle">@style/DialogButton_Positive_Night</item>
+        <item name="buttonBarNegativeButtonStyle">@style/DialogButton_Negative_Night</item>
+        <item name="buttonBarNeutralButtonStyle">@style/DialogButton_Neutral_Night</item>
+    </style>
+
+    <style name="DialogShapeAppearance" parent="ShapeAppearance.Material3.Corner.ExtraLarge">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">24dp</item>
+    </style>
+
+    <style name="DialogTitleText_Night" parent="MaterialAlertDialog.Material3.Title.Text">
+        <item name="android:textColor">@color/text_main</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:fontFamily">sans-serif-black</item>
+    </style>
+
+    <style name="DialogBodyText_Night" parent="MaterialAlertDialog.Material3.Body.Text">
+        <item name="android:textColor">@color/text_sub</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:lineSpacingExtra">4dp</item>
+    </style>
+
+    <style name="DialogButton_Positive_Night" parent="Widget.Material3.Button.TextButton.Dialog">
+        <item name="android:textColor">@color/brand_purple</item>
+        <item name="rippleColor">@color/brand_purple_alpha15</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+    <style name="DialogButton_Negative_Night" parent="Widget.Material3.Button.TextButton.Dialog">
+        <item name="android:textColor">@color/text_sub</item>
+        <item name="rippleColor">@color/brand_purple_alpha15</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="DialogButton_Neutral_Night" parent="Widget.Material3.Button.TextButton.Dialog">
+        <item name="android:textColor">@color/text_sub</item>
+        <item name="rippleColor">@color/brand_purple_alpha15</item>
+        <item name="android:textSize">14sp</item>
+    </style>
 </resources>
